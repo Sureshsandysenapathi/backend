@@ -4,7 +4,10 @@ const loginController = require('../controllers/loginController');
 
 const router = express.Router();
 
-router.post('/login', loginController.loginUser);
+router.post('/login', (req, res) => {
+    // Your authentication logic
+    res.send('Login endpoint hit');
+  });
 
      
 

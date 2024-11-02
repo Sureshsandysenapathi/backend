@@ -6,10 +6,10 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect('mongodb+srv://senapathisuresh:suresh%40123@cluster0.s73z4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+      useUnifiedTopology: true
+    }); 
     console.log('MongoDB connected');
   } catch (error) {
     console.error('MongoDB connection failed:', error);

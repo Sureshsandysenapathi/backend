@@ -1,7 +1,7 @@
 // Example signup route in Node.js using Express
 const express = require('express');
 const bcrypt = require('bcrypt');
-const User = require('../models/User'); // Your User model
+const signup = require('../models/signup'); // Your User model
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
@@ -30,7 +30,15 @@ router.post('/signup', async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ message: 'User created successfully',token: "fake-token", role: "user"  });
+    res.status(201).json({
+      message: 'User created successfully',
+      user: {
+          username:newUser.username,
+          email:newUser.email,
+          password:newUser.password
+          // Include any additional fields if necessary
+      },
+  });;
   } catch (error) {
     console.error('Error during signup:', error);
     res.status(500).json({ message: 'Server error' });

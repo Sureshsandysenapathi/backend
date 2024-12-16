@@ -13,8 +13,10 @@ router.post('/signup', (req, res) => {
         check('confirmPassword', 'Confirm Password is required').not().isEmpty(),
       ],
       
-    res.send('signup endpoint hit');
-  });
+      res.json({ message: 'Signup successful' });
+    });
+
+
 
      
 

@@ -1,20 +1,20 @@
-// config/db.js
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const mysql = require('mysql2');
 
-dotenv.config();
+// Create a connection to the database
+const db = mysql.createConnection({
+  host: 'localhost',         // Your database host
+  user: 'root',              // Your database username
+  password: 'suresh@123senapathi', // Your database password
+  database: 'lms_db'         // Your database name
+});
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect('mongodb+srv://senapathisuresh:suresh%40123@cluster1.2sln3.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    }); 
-    console.log('MongoDB connected');
-  } catch (error) {
-    console.error('MongoDB connection failed:', error);
-    process.exit(1); // Exit process with failure
+// Connect to the database
+db.connect((err) => {
+  if (err) {
+    console.error('Database connection failed: ', err.message);
+    return;
   }
-};
+  console.log('Connected to the MySQL database!');
+});
 
-module.exports = connectDB;
+module.exports = db;
